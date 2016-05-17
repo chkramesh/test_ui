@@ -1,0 +1,23 @@
+<div id="divDataBody" class="container">   
+    <div ng-show="showRecipeList" style="padding-top:10px;">
+        <table ng-table="tableParams" template-pagination="Templates/ngTablePager.html" class="table table-striped table-hover table-condensed bottom-border">
+            <tr ng-repeat="item in $data">
+                <td width="30" style="text-align:center" header="'ng-table/headers/checkbox.html'">
+                    <input type="checkbox" ng-model="checkboxes.items[$index]" ng-change="listCheckboxChange($index)" />
+                </td>                
+                <td data-title="'Recipe Id'" width="70px" align="center">{{item.recipeId}}</td>             
+                <td data-title="'Recipe Name'" width="100px" align="center">{{item.title}}</td>              
+                <td data-title="'Summary'" width="400px" align="center">{{item.summary}}</td>
+                <td data-title="'Available Since'" sortable="'availableSince'" width="80px" align="center">{{item.availableSince | date : "MM/dd/yyyy"}}</td>
+            </tr>
+        </table> 
+        <div style="padding-top:10px;">
+            <button type="button" class="btn btn-success" id="btnAddRecipe" ng-disabled="hasEditItemChecked" ng-click="paging.openRecipeForm()">&#160;Add Recipe&#160;</button>            
+        </div>                                    
+    </div>       
+</div>
+<!--Template for checkbox in header-->
+<script type="text/ng-template" id="ng-table/headers/checkbox.html">
+    <input type="checkbox" ng-model="checkboxes.topChecked" ng-disabled="checkboxes.topDisabled" ng-change="topCheckboxChange()" value="" />
+</script>
+

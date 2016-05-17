@@ -1,0 +1,63 @@
+<div class="dialog-header">
+    <div class="dialog-title">{{ recipeDialogTitle }}</div>
+</div>
+<form class="form-horizontal" name="recipeForm" id="frmRecipe" novalidate ng-validator>
+    <div class="dialog-message dialog-body">
+        <div class="form-group" ng-class="{'has-warning' : recipeForm.txtRecipeTitle.$dirty}">
+            <label for="txtRecipeName" class="col-sm-2 label-adjust">Recipe Name <span class="field-required">*</span></label>
+            <input type="text" class="form-control" id="txtRecipeTitle" name="txtRecipeTitle"
+                   data-ng-model="model.receipe.title"
+                   validate-on="blur"
+                   clear-on="focus"
+                   required required-message="'Recipe title is required'"
+                   ng-maxlength="50" max-length-message="'No longer than 50 characters'"
+                   message-display-class="replace-label-dent"
+                   ng-focus="setDrag(true);setVisited('txtRecipeTitle')" ng-blur="setDrag(false)"
+                   auto-focus>
+        </div>
+        
+        
+        <div class="form-group" ng-class="{'has-warning' : recipeForm.txtRecipeSummary.$dirty}">
+            <label for="txtRecipeSummary" class="col-sm-2 label-adjust">Recipe Summary <span class="field-required">*</span></label>
+            <textarea type="text" class="form-control" id="txtRecipeSummary" name="txtRecipeSummary"
+                   data-ng-model="model.receipe.summary"                  
+                   required required-message="'Recipe title is required'"
+                   cols="40" rows="5" ng-maxlength="200"
+                   max-length-message="'No longer than 200 characters'"                  
+                   ng-focus="setDrag(true);setVisited('txtRecipeSummary')" ng-blur="setDrag(false)"
+                   auto-focus> </textarea>
+        </div>
+        
+     
+        <div class="form-group low-bottom">
+            <label for="txtAvailableSince" class="col-sm-2 label-adjust">Available Since</label>
+            <div class="input-group" ng-class="{'has-warning' : recipeForm.txtAvailableSince.$dirty}">
+                <input type="text" class="form-control" id="txtAvailableSince" name="txtAvailableSince"
+                       ng-model="model.receipe.availableSince" style="width: 210px;"
+                       datepicker-popup="{{format}}" is-open="opened" min-date="'2016-01-01'" max-date="'2016-12-31'"
+                       datepicker-options="dateOptions" show-button-bar="false" 
+                       validate-on="blur"
+                       clear-on="focus"
+                       date invalid-date-message="'Invalid date'"
+                       min-date-message="'Date below minimum value'"
+                       message-after="calendarButton"
+                       message-display-class="remove-left-dent"
+                       ng-focus="setDrag(true);setVisited('txtAvailableSince')" ng-blur="setDrag(false)">
+                <span id="calendarButton" style="float:right;">
+                    <button type="button" class="btn btn-default height-to-form-comtrol" ng-click="openDatePicker($event)">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+            </div>
+        </div>        
+    </div>
+    <div class="dialog-buttons dialog-footer">
+        <span class="legend-line">(<span class='field-required'>*</span>: required field)</span>        
+        <button type="button" class="dialog-button dialog-button-secondary" ng-mousedown="cancelAddOrUpdate()">Cancel</button>
+        <button type="button" class="dialog-button" ng-class="{'dialog-button-primary': recipeForm.$valid, 'dialog-button-primary-disabled': !(recipeForm.$valid && recipeForm.$dirty)} " ng-disabled="!(recipeForm.$valid && recipeForm.$dirty)" data-ng-click="saveRecipe(recipeForm.$valid)">&#160;Save&#160;</button>
+    </div>
+</form>
+
+
+
+
