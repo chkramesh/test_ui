@@ -1,0 +1,43 @@
+<mat-toolbar color="primary" *ngIf="(authService.currentAuthStatus | async) as currentAuthStatus">
+
+  <!-- <a mat-icon-button routerLink="/home"> -->
+    <!-- <app-logo></app-logo> -->
+
+  <a mat-icon-button routerLink="/">
+      <mat-icon svgIcon="lemon"></mat-icon>
+      <span class="mat-h2">LemonMart</span>
+  </a>
+  <span class="flex-spacer"></span>
+
+  <!-- <span>
+    Angular NavBar + Login Example #01
+  </span>
+  <span class="fill-remaining-space"></span> -->
+ 
+  <!-- <button mat-button (click)="onAdmin()" *ngIf="currentAuthStatus.isAuthenticated">Admin 3</button> -->
+
+  <!-- <button mat-button routerLink="/pos">POST Test</button> -->
+  <button mat-button *ngIf="currentAuthStatus.isAuthenticated" routerLink="pos/pos">Pos </button>
+  <button mat-button *ngIf="currentAuthStatus.isAuthenticated" routerLink="pos/posline">Pos Line </button>
+  <button mat-button *ngIf="currentAuthStatus.isAuthenticated" routerLink="product">Product </button>
+  <button mat-button *ngIf="currentAuthStatus.isAuthenticated" routerLink="/inventory"> Inventory </button>
+
+  <button *ngIf="currentAuthStatus.isAuthenticated" mat-mini-fab routerLink="/user/profile" matTooltip="Profile" aria-label="User Profile">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <!-- <span class="flex-spacer"></span> -->
+
+  <button *ngIf="currentAuthStatus.isAuthenticated" mat-mini-fab routerLink="/user/logout" matTooltip="Logout" aria-label="Logout">
+    <mat-icon>lock_open</mat-icon>
+  </button>
+
+
+  <!-- <button mat-button (click)="onLogout()" *ngIf="currentAuthStatus.isAuthenticated | async">Logout</button> -->
+  <button mat-button (click)="onLogout()" *ngIf="currentAuthStatus.isAuthenticated">Logout</button>
+</mat-toolbar>
+
+<p>currentAuthStatus :- {{currentAuthStatus | json }}</p>
+<p>isAdmin / isNormalUser / isManager :- {{isAdmin}} / {{isNormalUser}} / {{isManager}}</p>
+
+<!-- <router-outlet></router-outlet> -->

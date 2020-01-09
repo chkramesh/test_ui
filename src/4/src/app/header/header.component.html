@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" *ngIf="(authService.currentAuthStatus | async) as currentAuthStatus">
+  <span>
+    Angular NavBar + Login Example #01
+  </span>
+  <span class="fill-remaining-space"></span>
+  <!-- <button mat-button routerLink="/admin">Admin</button>
+  <button mat-button routerLink="/admin">Manager</button> -->
+
+  <button mat-button>Menu Option 01</button>
+  <button mat-button>Menu Option 02</button>
+
+  <!-- <button mat-button (click)="onLogout()" *ngIf="currentAuthStatus.isAuthenticated | async">Logout</button> -->
+  <button mat-button (click)="onLogout()" *ngIf="currentAuthStatus.isAuthenticated">Logout</button>
+</mat-toolbar>
+
+<p>currentAuthStatus :- {{currentAuthStatus | json }}</p>
+<p>isAdmin / isNormalUser / isManager :- {{isAdmin}} / {{isNormalUser}} / {{isManager}}</p>
+
